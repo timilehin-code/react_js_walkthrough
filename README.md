@@ -68,12 +68,33 @@ function App() {
 Handling multiple components is the core of building applications in React. To manage them effectively, you must master three main pillars: component composition (structuring), state management (communication), and dynamic rendering (lists).
 
 ```js
-import Navbar from './Navbar';
-import Dashboard from './Dashboard';
+import Navbar from "./Navbar";
+import Dashboard from "./Dashboard";
 ```
+
 this is used to get components from other template to the main page `App.js`.
+
 ```js
  <Navbar />
       <Dashboard />
-    //this are the templates from the other pages
+    //these are the templates from the other pages
+```
+
+## 5. Adding styles to your App
+
+When we use react to write inline css, we use javascript object (key-value pairs) to write dynamic styles. for example:
+
+````js
+ <a href="/create" style={{
+         color: "white",
+         backgroundColor: "#f1356d",
+         borderRadius:"8px "
+       }}>New Blog</a>
+       ```
+````
+
+but we can just use the `import` keyword to import an external css file
+to our file.
+```js
+import "./index.css";
 ```
