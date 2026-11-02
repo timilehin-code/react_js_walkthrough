@@ -38,7 +38,7 @@ function App() {
 
 ## 3. Dynamic values in templates
 
-    Dynamic values allows you to parse dynamic data, into your react templates and components.
+Dynamic values allows you to parse dynamic data, into your react templates and components.
 
 ```js
 function App() {
@@ -61,4 +61,19 @@ function App() {
     </div>
   );
 }
+```
+
+## 4. Handling multiple components
+
+Handling multiple components is the core of building applications in React. To manage them effectively, you must master three main pillars: component composition (structuring), state management (communication), and dynamic rendering (lists).
+
+```js
+import Navbar from './Navbar';
+import Dashboard from './Dashboard';
+```
+this is used to get components from other template to the main page `App.js`.
+```js
+ <Navbar />
+      <Dashboard />
+    //this are the templates from the other pages
 ```
