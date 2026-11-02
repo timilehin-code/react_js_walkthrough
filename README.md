@@ -32,5 +32,33 @@ function App() {
       </div>
     </div>
   ); // this is a component
+  export default App;
+}
+```
+
+## 3. Dynamic values in templates
+
+    Dynamic values allows you to parse dynamic data, into your react templates and components.
+
+```js
+function App() {
+  const title = "Welcome to the new Blog";
+  const likes = 50;
+  const person = { name: "timi", age: 21 };
+  const link = "https://google.com";
+
+  return (
+    <div className="App">
+      <div className="content">
+        <h1>{title}</h1>
+        <p>Liked by {likes} people</p>
+        <p>
+          {person.name}, {person.age}
+        </p>
+        <p>{Math.random() * 10}</p>
+        <a href={link}>google</a>
+      </div>
+    </div>
+  );
 }
 ```
