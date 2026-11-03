@@ -1,17 +1,17 @@
 const HomePage = () => {
   const title = "Welcome to the new Blog";
-  const likes = 50;
-  const person = { name: "timi", age: 21 };
-  const link = "https://google.com";
+  const handleClick = (e) => {
+    console.log("Hello user", e.target);
+  };
+
+  const handleClickAgain = (name) => {
+    console.log(`Hello, ${name}`);
+  };
   return (
     <div className="home">
       <h1>{title}</h1>
-      <p>Liked by {likes} people</p>
-      <p>
-        {person.name}, {person.age}
-      </p>
-      <p>{Math.random() * 10}</p>
-      <a href={link}>google</a>
+      <button onClick={handleClick}>Click me</button>
+      <button onClick={() => handleClickAgain("timi")}>Click me Again</button>
     </div>
   );
 };

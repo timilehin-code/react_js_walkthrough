@@ -95,6 +95,31 @@ When we use react to write inline css, we use javascript object (key-value pairs
 
 but we can just use the `import` keyword to import an external css file
 to our file.
+
 ```js
 import "./index.css";
+```
+
+## 6. Adding click events
+To add a click function to an element in react, you will use the `onClick` keyword on the element you want to have the click function, like the example shown below. 
+```js
+const HomePage = () => {
+  const title = "Welcome to the new Blog";
+  const handleClick = (e) => {
+    console.log("Hello user", e.target);
+  };
+
+  const handleClickAgain = (name) => {
+    console.log(`Hello, ${name}`);
+  };
+  return (
+    <div className="home">
+      <h1>{title}</h1>
+      <button onClick={handleClick}>Click me</button>
+      <button onClick={() => handleClickAgain("timi")}>Click me Again</button>
+    </div>
+  );
+};
+
+export default HomePage;
 ```
