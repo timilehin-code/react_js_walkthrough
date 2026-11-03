@@ -101,7 +101,9 @@ import "./index.css";
 ```
 
 ## 6. Adding click events
-To add a click function to an element in react, you will use the `onClick` keyword on the element you want to have the click function, like the example shown below. 
+
+To add a click function to an element in react, you will use the `onClick` keyword on the element you want to have the click function, like the example shown below.
+
 ```js
 const HomePage = () => {
   const title = "Welcome to the new Blog";
@@ -117,6 +119,36 @@ const HomePage = () => {
       <h1>{title}</h1>
       <button onClick={handleClick}>Click me</button>
       <button onClick={() => handleClickAgain("timi")}>Click me Again</button>
+    </div>
+  );
+};
+
+export default HomePage;
+```
+
+## 7. Using state
+
+The state of a component, is the data being use by a component at a particular point. It could be array of values,booleans,strings or any data our component uses. To do it, we use the use State method or function like the example shown below
+
+```js
+import { useState } from "react";
+const HomePage = () => {
+  const [name, setName] = useState("Timi");
+  const [age, setAge] = useState(21);
+  const title = "Welcome to the new Blog";
+
+  const handleClick = () => {
+    setName("Silver");
+    setAge("20");
+  };
+
+  return (
+    <div className="home">
+      <h1>{title}</h1>
+      <p>
+        {name} is {age} years old
+      </p>
+      <button onClick={handleClick}>Click me</button>
     </div>
   );
 };
