@@ -200,3 +200,7 @@ const HomePage = () => {
 
 export default HomePage;
 ```
+
+## 9. Props (properties)
+
+props or properties are a way to parse data from a parent component, to a child component.
