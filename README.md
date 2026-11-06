@@ -201,6 +201,60 @@ const HomePage = () => {
 export default HomePage;
 ```
 
-## 9. Props (properties)
+## 9. Props (properties) and reusable components
 
 props or properties are a way to parse data from a parent component, to a child component.
+
+```js
+const BlogList = ({ blogs, title }) => {
+  return (
+    <div className="blog-list">
+      <h2>{title}</h2>
+      {blogs.map((blog) => (
+        <div className="blog-preview" key={blog.id}>
+          <h2>{blog.title}</h2>
+          <p>Written by {blog.author}</p>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export default BlogList;
+
+
+// where it was reused
+import { useState } from "react";
+import BlogList from "./BlogList";
+const HomePage = () => {
+  const [blogs, setBlogs] = useState([
+    {
+      id: 1,
+      title: "Getting Started with JavaScript",
+      body: "JavaScript is a versatile programming language primarily used for web development...",
+      author: "Alex Morgan",
+    },
+    {
+      id: 2,
+      title: "Mastering React Hooks",
+      body: "Hooks allow you to use state and other React features without writing a class...",
+      author: "Sarah Jenkins",
+    },
+    {
+      id: 3,
+      title: "A Guide to Modern CSS Layouts",
+      body: "Flexbox and CSS Grid have completely changed the way we design responsive web layouts...",
+      author: "David Chen",
+    },
+  ]);
+
+  return (
+    <div className="home">
+      <BlogList blogs={blogs} title={"All blogs!"}></BlogList>
+      <BlogList blogs={blogs.filter((blog)=> blog.author == "David Chen" || blog.author == "Alex Morgan" )} title={"Timi's blogs!"}></BlogList>  
+    </div>
+  );
+};
+
+export default HomePage;
+```

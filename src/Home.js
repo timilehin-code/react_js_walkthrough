@@ -25,6 +25,7 @@ const HomePage = () => {
   return (
     <div className="home">
       <BlogList blogs={blogs} title={"All blogs!"}></BlogList>
+      <BlogList blogs={blogs.filter((blog)=> blog.author == "David Chen" || blog.author == "Alex Morgan" )} title={"Timi's blogs!"}></BlogList>  
     </div>
   );
 };
