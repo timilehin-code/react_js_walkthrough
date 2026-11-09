@@ -258,3 +258,4 @@ const HomePage = () => {
 
 export default HomePage;
 ```
+## 10. the  useEffect Hook
