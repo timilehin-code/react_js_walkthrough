@@ -251,11 +251,27 @@ const HomePage = () => {
   return (
     <div className="home">
       <BlogList blogs={blogs} title={"All blogs!"}></BlogList>
-      <BlogList blogs={blogs.filter((blog)=> blog.author == "David Chen" || blog.author == "Alex Morgan" )} title={"Timi's blogs!"}></BlogList>  
+      <BlogList blogs={blogs.filter((blog)=> blog.author == "David Chen" || blog.author == "Alex Morgan" )} title={"Timi's blogs!"}></BlogList>
     </div>
   );
 };
 
 export default HomePage;
 ```
-## 10. the  useEffect Hook
+
+## 10. the useEffect Hook
+
+This hook allows you to run a specific code upon every render.
+
+```js
+import {useEffect} from "react";
+  useEffect(
+    ()=>{
+      console.log("use effect ran");
+      console.log(blogs);
+      
+      
+    })
+```
+
+## 11. Fetching data using useEffect:
