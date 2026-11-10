@@ -273,5 +273,41 @@ import {useEffect} from "react";
       
     })
 ```
+## 11. Creating custom Hooks:
+ to create a custom hook in react you need to create a new file in the `src` folder with the name of the hook and the name of the hook must start with "use" e.g `useGold`
 
-## 11. Fetching data using useEffect:
+
+ ```js
+ import { useState, useEffect } from "react";
+const useFetch = (endPoint) => {
+  const [data, setData] = useState([]);
+  const [isPending, setIsPending] = useState(true);
+  const [error, setError] = useState(null);
+  useEffect(() => {
+    setTimeout(() => {
+      fetch(endPoint)
+        .then((res) => {
+          if (!res.ok) {
+            throw new Error("Could not fetch the data for that resource");
+          }
+          return res.json();
+        })
+        .then((data) => {
+          // Handle cases where data inside data.json is wrapped like { "blogs": [...] }
+          const blogArray = Array.isArray(data) ? data : data.blogs;
+          setData(blogArray || []);
+          setIsPending(false);
+          setError(null);
+        })
+        .catch((err) => {
+          setIsPending(false);
+          setError(err.message);
+        });
+    }, 5  00);
+  }, [endPoint]);
+
+  return {data, isPending, error}
+};
+
+export default useFetch;
+```
