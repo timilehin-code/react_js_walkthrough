@@ -264,53 +264,80 @@ export default HomePage;
 This hook allows you to run a specific code upon every render.
 
 ```js
-import {useEffect} from "react";
-  useEffect(
-    ()=>{
-      console.log("use effect ran");
-      console.log(blogs);
-      
-      
-    })
+import { useEffect } from "react";
+useEffect(() => {
+  console.log("use effect ran");
+  console.log(blogs);
+});
 ```
+
 ## 11. Creating custom Hooks:
- to create a custom hook in react you need to create a new file in the `src` folder with the name of the hook and the name of the hook must start with "use" e.g `useGold`
 
+to create a custom hook in react you need to create a new file in the `src` folder with the name of the hook and the name of the hook must start with "use" e.g `useGold`
 
- ```js
- import { useState, useEffect } from "react";
+```js
+import { useState, useEffect } from "react";
 const useFetch = (endPoint) => {
-  const [data, setData] = useState([]);
-  const [isPending, setIsPending] = useState(true);
-  const [error, setError] = useState(null);
-  useEffect(() => {
-    setTimeout(() => {
-      fetch(endPoint)
-        .then((res) => {
-          if (!res.ok) {
-            throw new Error("Could not fetch the data for that resource");
-          }
-          return res.json();
-        })
-        .then((data) => {
-          // Handle cases where data inside data.json is wrapped like { "blogs": [...] }
-          const blogArray = Array.isArray(data) ? data : data.blogs;
-          setData(blogArray || []);
-          setIsPending(false);
-          setError(null);
-        })
-        .catch((err) => {
-          setIsPending(false);
-          setError(err.message);
-        });
-    }, 5  00);
-  }, [endPoint]);
+ const [data, setData] = useState([]);
+ const [isPending, setIsPending] = useState(true);
+ const [error, setError] = useState(null);
+ useEffect(() => {
+   setTimeout(() => {
+     fetch(endPoint)
+       .then((res) => {
+         if (!res.ok) {
+           throw new Error("Could not fetch the data for that resource");
+         }
+         return res.json();
+       })
+       .then((data) => {
+         // Handle cases where data inside data.json is wrapped like { "blogs": [...] }
+         const blogArray = Array.isArray(data) ? data : data.blogs;
+         setData(blogArray || []);
+         setIsPending(false);
+         setError(null);
+       })
+       .catch((err) => {
+         setIsPending(false);
+         setError(err.message);
+       });
+   }, 5  00);
+ }, [endPoint]);
 
-  return {data, isPending, error}
+ return {data, isPending, error}
 };
 
 export default useFetch;
 ```
 
-##  The react router 
-a router is used to handle navigation and routing across multiple pages in a react application or any application in general. the primary purpose is to create single page application (SPAs) with multiple views.
+## The react router
+
+a router is used to handle navigation and routing across multiple pages in a react application or any application in general. The primary purpose is to create single page application (SPAs) with multiple views.
+
+```bash
+ npm install react-router-dom
+```
+
+this is the command to install the react router library into your application
+
+```js
+import Navbar from "./Navbar";
+import HomePage from "./Home";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+function App() {
+  return (
+    <Router>
+      <div className="App">
+        <Navbar></Navbar>
+        <div className="content">
+          <Routes>
+            <Route path="/" element={<HomePage />}></Route>
+          </Routes>
+        </div>
+      </div>
+    </Router>
+  );
+}
+
+export default App;
+```
