@@ -311,3 +311,6 @@ const useFetch = (endPoint) => {
 
 export default useFetch;
 ```
+
+##  The react router 
+a router is used to handle navigation and routing across multiple pages in a react application or any application in general. the primary purpose is to create single page application (SPAs) with multiple views.
