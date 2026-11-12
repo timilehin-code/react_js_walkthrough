@@ -4,7 +4,7 @@ const Navbar = () => {
       <h1>The timi Blog.</h1>
       <div className="links">
         <a href="/">Home</a>
-        <a href="/create" style={{
+        <a href="/Create" style={{
           color: "white",
           backgroundColor: "#f1356d",
           borderRadius:"8px "
