@@ -1,6 +1,5 @@
 import BlogList from "./BlogList";
 import useFetch from "./useFetch";
-
 const HomePage = () => {
   const {data: blogs, isPending, Error} = useFetch("/data.json");
   return (
