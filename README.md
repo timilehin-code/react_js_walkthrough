@@ -310,7 +310,7 @@ const useFetch = (endPoint) => {
 export default useFetch;
 ```
 
-## The react router
+## 12. The react router
 
 a router is used to handle navigation and routing across multiple pages in a react application or any application in general. The primary purpose is to create single page application (SPAs) with multiple views.
 
@@ -340,4 +340,52 @@ function App() {
 }
 
 export default App;
+```
+
+
+##  13. Controlled Input.
+Controlled inputs are a way in react, of setting up input field and forms, in order to track their values.
+
+```JS
+import { useState } from "react";
+
+const Create = () => {
+  const [title, setTitle] = useState("");
+  const [body, setBody] = useState("");
+  const [author, setAuthor] = useState("Tawose Oluwatimilehin");
+  return (
+    <div className="create">
+      <h2 className="title">Add a new Blog</h2>
+      <form action="" method="post">
+        <label>Blog Title:</label>
+        <input
+          type="text"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          required
+        />
+        <label>Blog Body:</label>
+        <textarea required
+        value={body}
+          onChange={(e) => setBody(e.target.value)}
+        ></textarea>
+        <label>Blog Author:</label>
+        <select
+        value={author}
+        onChange={(e) => setAuthor(e.target.value)}
+        >
+          <option value="Tawose Oluwatimilehin">Tawose Oluwatimilehin</option>
+          <option value="Ibituyi Silver">Ibituyi Silver</option>
+        </select>
+        <button>Add blog</button>
+      </form>
+      <p>{ title}</p>
+      <p>{body}</p>
+      <p>{ author}</p>
+    </div>
+  );
+};
+
+export default Create;
+
 ```
