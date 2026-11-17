@@ -1,22 +1,27 @@
 import { useState, useEffect } from "react";
+
 const useFetch = (endPoint) => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(null);
   const [isPending, setIsPending] = useState(true);
   const [error, setError] = useState(null);
+
   useEffect(() => {
     const abortCont = new AbortController();
-    setTimeout(() => {
+
+    const timerId = setTimeout(() => {
       fetch(endPoint, { signal: abortCont.signal })
         .then((res) => {
           if (!res.ok) {
             throw new Error("Could not fetch the data for that resource");
           }
+          const contentType = res.headers.get("content-type");
+          if (!contentType || !contentType.includes("application/json")) {
+            throw new Error(`Endpoint "${endPoint}" returned HTML instead of JSON.`);
+          }
           return res.json();
         })
         .then((data) => {
-          // Handle cases where data inside data.json is wrapped like { "blogs": [...] }
-          const blogArray = Array.isArray(data) ? data : data.blogs;
-          setData(blogArray || []);
+          setData(data);
           setIsPending(false);
           setError(null);
         })
@@ -29,7 +34,9 @@ const useFetch = (endPoint) => {
           }
         });
     }, 1500);
+
     return () => {
+      clearTimeout(timerId);
       abortCont.abort();
     };
   }, [endPoint]);

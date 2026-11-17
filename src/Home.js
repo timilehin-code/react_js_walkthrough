@@ -1,12 +1,19 @@
 import BlogList from "./BlogList";
 import useFetch from "./useFetch";
+
 const HomePage = () => {
-  const {data: blogs, isPending, Error} = useFetch("/data.json");
+  const { data, isPending, error } = useFetch("/data.json");
+
+  // Safely handle both [...] and { "blogs": [...] } structures
+  const blogList = Array.isArray(data) ? data : data?.blogs;
+
   return (
     <div className="home">
-      {Error && <div>{Error}</div>}
+      {error && <div>{error}</div>}
       {isPending && <div>Loading...</div>}
-      {blogs.length > 0 && <BlogList blogs={blogs} title={"All blogs!"} />}
+      {blogList && blogList.length > 0 && (
+        <BlogList blogs={blogList} title={"All blogs!"} />
+      )}
     </div>
   );
 };
