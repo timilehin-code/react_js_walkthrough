@@ -29,6 +29,18 @@
       "body": "welcome to my blog",
       "author": "Ibituyi Silver",
       "id": "FPtffTjdcgs"
+    },
+    {
+      "title": "",
+      "body": "",
+      "author": "Tawose Oluwatimilehin",
+      "id": "QWkyF5Wub2o"
+    },
+    {
+      "title": "Utility death spiral",
+      "body": "The lack of provision of basic utilities like water, and electricty by the goverment of Nigeria, has made people look for other alternatives like solar kits, generators,boreholes, and wells,  in order for them to  able to access this utillities  which is very good on when you look at it at first. But in hindsight, it causes a major problem for these sectors because, when majority of the country's populace have gotten an alternative, it makes it more difficult to run this sectors because few are people are paying for the services, in essence they won't be able to buy gas, make repaires to damaged equipement, and machines and also pay staffs which eventually makes the whole sector collapase which has already happened to one of them like the water sector i genuiely hope it does not affect the electric sector.",
+      "author": "Tawose Oluwatimilehin",
+      "id": "lAhCdxgs6dw"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

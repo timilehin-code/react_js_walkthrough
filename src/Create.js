@@ -1,10 +1,11 @@
 import { useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 const Create = () => {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const [author, setAuthor] = useState("Tawose Oluwatimilehin");
   const [isPending, setIsPending] = useState(false);
+  const history = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -17,6 +18,7 @@ const Create = () => {
     }).then(() => {
       console.log(`new blog created!`);
       setIsPending(false);
+      history("/")
     });
   };
   return (
