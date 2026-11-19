@@ -4,12 +4,41 @@ const Create = () => {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const [author, setAuthor] = useState("Tawose Oluwatimilehin");
+  const [errors, setError] = useState({});
   const [isPending, setIsPending] = useState(false);
   const history = useNavigate();
+  const validate = () => {
+    const newErrors = {};
 
+    // .trim() removes empty spaces so users can't submit just "   "
+    if (!title.trim()) {
+      newErrors.title = "Title is required";
+    } else if (title.trim().length < 5) {
+      newErrors.title = "Title must be at least 5 characters";
+    }
+
+    if (!body.trim()) {
+      newErrors.body = "Blog body is required";
+    } else if (body.trim().length < 20) {
+      newErrors.body = "Body must be at least 20 characters";
+    }
+
+    return newErrors;
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
-    const blog = { title, body, author };
+
+    const formErrors = validate();
+    if (Object.keys(formErrors).length > 0) {
+      setError(formErrors);
+      return;
+    }
+    setError({});
+    const blog = {
+      title: title.trim(),
+      body: body.trim(),
+      author,
+    };
     setIsPending(true);
     fetch(`http://localhost:8000/blogs`, {
       method: "POST",
@@ -18,7 +47,7 @@ const Create = () => {
     }).then(() => {
       console.log(`new blog created!`);
       setIsPending(false);
-      history("/")
+      history("/");
     });
   };
   return (
@@ -29,15 +58,22 @@ const Create = () => {
         <input
           type="text"
           value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          required
+          onChange={(e) => {
+            setTitle(e.target.value);
+            if (errors.title) setError({ ...errors, title: "" });
+          }}
         />
+        {errors.title && <p style={{ color: "red" }}>{errors.title}</p>}
         <label>Blog Body:</label>
         <textarea
-          required
           value={body}
-          onChange={(e) => setBody(e.target.value)}
+          onChange={(e) => {
+            setBody(e.target.value);
+            // Clear the body error as soon as the user starts typing again
+            if (errors.body) setError({ ...errors, body: "" });
+          }}
         ></textarea>
+        {errors.body && <p style={{ color: "red" }}>{errors.body}</p>}
         <label>Blog Author:</label>
         <select value={author} onChange={(e) => setAuthor(e.target.value)}>
           <option value="Tawose Oluwatimilehin">Tawose Oluwatimilehin</option>
